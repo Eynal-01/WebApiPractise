@@ -46,8 +46,24 @@ namespace WebApiTask1.Controllers
 
         // POST api/<StudentController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] StudentDto dto)
         {
+            try
+            {
+                var entity = new StudentDto
+                {
+                    Id = dto.Id,
+                    FullName = dto.FullName,
+                    Score = dto.Score,
+                    Age = dto.Age,
+                    SeriaNo = dto.SeriaNo,
+                };
+                return Ok(entity);          
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<StudentController>/5
