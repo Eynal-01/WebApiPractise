@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApiTask1.Data;
+using WebApiTask1.Formatters;
 using WebApiTask1.Repositories.Abstract;
 using WebApiTask1.Repositories.Concrete;
 using WebApiTask1.Services.Abstract;
@@ -9,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.OutputFormatters.Add(new VCardOutputFormatter());           
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

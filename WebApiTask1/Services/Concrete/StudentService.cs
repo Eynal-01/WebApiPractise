@@ -24,14 +24,16 @@ namespace WebApiTask1.Services.Concrete
             _studentRepository.Delete(item);    
         }
 
-        public IEnumerable<Student> GatAll()
-        {
-           return _studentRepository.GetAll();      
-        }
+       
 
         public Student Get(int id)
         {
             return _studentRepository.Get(id);  
+        }
+
+        public IEnumerable<Student> GetAll()
+        {
+            return _studentRepository.GetAll();
         }
 
         public void Update(Student entity)
