@@ -12,8 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options =>
 {
-    options.OutputFormatters.Add(new VCardOutputFormatter());           
-    options.InputFormatters.Add(new VCardInputFormatter());           
+    options.OutputFormatters.Insert(0, new VCardOutputFormatter());           
+    options.InputFormatters.Insert(0, new VcardInputFormatter());
+    options.OutputFormatters.Insert(0, new CsvOutputFormatter());
+    options.InputFormatters.Insert(0, new CsvInputFormatter());
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -29,6 +31,7 @@ builder.Services.AddDbContext<StudentDbContext>(opt =>
 });
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
