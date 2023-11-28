@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApiTask1.Dtos;
+using WebApiTask1.Entities;
 using WebApiTask1.Services.Abstract;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,26 +40,35 @@ namespace WebApiTask1.Controllers
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public StudentDto Get(int id)
         {
-            return "value";
+            var item = _studentService.Get(id);
+            return new StudentDto
+            {
+                Age = item.Age,
+                FullName = item.FullName,
+                Score = item.Score,
+                Id = item.Id,
+                SeriaNo = item.SeriaNo
+
+            };
         }
 
         // POST api/<StudentController>
         [HttpPost]
-        public IActionResult Post([FromBody] StudentDto dto)
+        public IActionResult Post([FromBody] StudentAddDto value)
         {
             try
             {
-                var entity = new StudentDto
+                var entity = new Student
                 {
-                    Id = dto.Id,
-                    FullName = dto.FullName,
-                    Score = dto.Score,
-                    Age = dto.Age,
-                    SeriaNo = dto.SeriaNo,
+                    Age = value.Age,
+                    FullName = value.FullName,
+                    Score = value.Score,
+                    SeriaNo = value.SeriaNo
                 };
-                return Ok(entity);          
+                _studentService.Add(entity);
+                return Ok(entity);
             }
             catch (Exception ex)
             {

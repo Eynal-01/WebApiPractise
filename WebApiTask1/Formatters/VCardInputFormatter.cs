@@ -43,7 +43,7 @@ namespace WebApiTask1.Formatters
                     SeriaNo = seriaNO.Split(':')[1],
                     Age = int.Parse(age.Split(':')[1]),
                     Score = double.Parse(score.Split(':')[1]),
-                    Fullname = fullname.Split(':')[1],
+                    FullName = fullname.Split(':')[1],
                 };
 
                 await ReadLineAsync("END:VCARD", reader, context, logger);

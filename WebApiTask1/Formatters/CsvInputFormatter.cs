@@ -113,7 +113,7 @@ namespace WebApiTask1.Formatters
 
                 var obj = new StudentAddDto
                 {
-                    Fullname = values[0],
+                    FullName = values[0],
                     SeriaNo = values[1],
                     Age = int.Parse(values[2]),
                     Score = double.Parse(values[3]),
