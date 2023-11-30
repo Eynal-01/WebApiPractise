@@ -42,7 +42,7 @@ namespace WebApiTask1.Controllers
         [HttpGet("{id}")]
         public StudentDto Get(int id)
         {
-            var item = _studentService.Get(id);
+            var item = _studentService.Get(s=>s.Id==id);
             return new StudentDto
             {
                 Age = item.Age,

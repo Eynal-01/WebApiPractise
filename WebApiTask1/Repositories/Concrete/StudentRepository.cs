@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using System.Linq.Expressions;
 using WebApiTask1.Data;
 using WebApiTask1.Entities;
 using WebApiTask1.Repositories.Abstract;
@@ -11,13 +12,13 @@ namespace WebApiTask1.Repositories.Concrete
 
         public StudentRepository(StudentDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         public void Add(Student entity)
         {
             _context.Students.Add(entity);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
         }
 
         public void Delete(Student entity)
@@ -26,9 +27,9 @@ namespace WebApiTask1.Repositories.Concrete
             _context.SaveChanges();
         }
 
-        public Student Get(int id)
+        public Student Get(Expression<Func<Student, bool>> expression)
         {
-           var student = _context.Students.SingleOrDefault(x => x.Id == id);
+            var student = _context.Students.SingleOrDefault(expression);
             return student;
         }
 

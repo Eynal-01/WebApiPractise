@@ -1,4 +1,5 @@
-﻿using WebApiTask1.Entities;
+﻿using System.Linq.Expressions;
+using WebApiTask1.Entities;
 using WebApiTask1.Repositories.Abstract;
 using WebApiTask1.Services.Abstract;
 
@@ -20,15 +21,13 @@ namespace WebApiTask1.Services.Concrete
 
         public void Delete(int id)
         {
-           var item = _studentRepository.Get(id);
+           var item = _studentRepository.Get(s => s.Id == id);
             _studentRepository.Delete(item);    
         }
 
-       
-
-        public Student Get(int id)
+        public Student Get(Expression<Func<Student, bool>> expression)
         {
-            return _studentRepository.Get(id);  
+            return _studentRepository.Get(expression);  
         }
 
         public IEnumerable<Student> GetAll()
