@@ -33,14 +33,19 @@ namespace WebApiTask1.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Score")
                         .HasColumnType("float");
 
-                    b.Property<int>("SeriaNo")
-                        .HasColumnType("int");
+                    b.Property<string>("SeriaNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
